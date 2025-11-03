@@ -1,44 +1,682 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shubham Snehil</title>
-  <link rel="stylesheet" href="style/style.scss">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubham Snehil - The Data Daemon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Oswald', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+        
+        /* Header/Hero Section */
+        .hero {
+            height: 100vh;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23000" width="1200" height="600"/><g fill="%23111"><circle cx="100" cy="100" r="50" opacity="0.3"/><circle cx="1000" cy="500" r="80" opacity="0.2"/><circle cx="600" cy="300" r="100" opacity="0.15"/></g></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            border-bottom: 5px solid #d4af37;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(212, 175, 55, 0.03) 2px,
+                rgba(212, 175, 55, 0.03) 4px
+            );
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            z-index: 10;
+            animation: fadeIn 1.5s ease-in;
+        }
+        
+        .hero h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 6rem;
+            color: #d4af37;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8),
+                         0 0 20px rgba(212, 175, 55, 0.5);
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: #bbb;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+        
+        .hero .tagline {
+            font-size: 1.2rem;
+            color: #888;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-links {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+        
+        .contact-links a {
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 12px 30px;
+            border: 2px solid #d4af37;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .contact-links a:hover {
+            background: #d4af37;
+            color: #000;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+            transform: translateY(-3px);
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        section h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4rem;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+        
+        section h2::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 4px;
+            background: #d4af37;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        /* About Section */
+        .about-content {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 50px;
+            border-left: 5px solid #d4af37;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            line-height: 1.8;
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+            gap: 30px;
+            margin-top: 50px;
+            justify-content: center;
+        }
+        
+        .skill-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            padding: 30px;
+            border: 2px solid #333;
+            border-left: 4px solid #d4af37;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            align-content: center;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-left: 4px solid #ffd700;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+        }
+        
+        .skill-card h3 {
+            color: #d4af37;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+        
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #d4af37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .experience-item {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 2px solid #333;
+            border-left: 5px solid #d4af37;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .experience-item::before {
+            content: '●';
+            position: absolute;
+            left: -62px;
+            top: 30px;
+            color: #d4af37;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+        }
+        
+        .experience-item:hover {
+            transform: translateX(10px);
+            border-left-width: 10px;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
+        }
+        
+        .experience-item h3 {
+            color: #d4af37;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .experience-item h4 {
+            color: #999;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .experience-item .date {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .experience-item p {
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .project-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 3px solid #333;
+            border-top: 5px solid #d4af37;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .project-card:hover::before {
+            left: 100%;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-top-width: 8px;
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+        }
+        
+        .project-card h3 {
+            color: #d4af37;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .project-card p {
+            color: #bbb;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .tech-tag {
+            background: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
+            padding: 8px 15px;
+            border: 1px solid #d4af37;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .project-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 12px 30px;
+            border: 2px solid #d4af37;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .project-link:hover {
+            background: #d4af37;
+            color: #000;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+        }
+        
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .education-card {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 35px;
+            border-left: 5px solid #d4af37;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .education-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
+        }
+        
+        .education-card h3 {
+            color: #d4af37;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .education-card h4 {
+            color: #999;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .education-card .date {
+            color: #666;
+            font-size: 1rem;
+            font-style: italic;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 50px;
+            text-align: center;
+            border-top: 3px solid #d4af37;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        footer p {
+            color: #666;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ffd700;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            section h2 {
+                font-size: 2.5rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                /* display: flex;
+                justify-content: center; /* Centers horizontally */
+                /* gap: 20px; Adds space between links */
+                /* margin-top: 20px; Optional: spacing from other elements */ 
+            }
+        }
+    </style>
 </head>
-<body class="main-content">
-  <header class="section sec1 header active">
-    <i class="fa-brands fa-instagram"></i>
-  </header>
-  <main>
-    <section class="section se12 About"></section>
-    <section class="section se13 Portfolio"></section>
-    <section class="section se14 Blogs"></section>
-    <section class="section se15 Contact"></section>
-  </main>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Shubham Snehil</h1>
+            <div class="subtitle">THE DATA DAEMON</div>
+            <div class="tagline">B.Sc. (H) '23 in Stats || M.Sc. '26 in Comp. Sci.</div>
+            <div class="tagline">Making Data Talk. Making Numbers Walk.</div>
+            
+            <div class="contact-links">
+                <a href="mailto:nitshubham07@gmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/shubham-snehil-46143a204" target="_blank">LinkedIn</a>
+                <a href="https://github.com/shubhamsnehil07" target="_blank">GitHub</a>
+                <a href="hhttps://medium.com/@shubham_snehil" target="_blank">Medium</a>
+            </div>
+        </div>
+    </div>
 
-  <div class="controls">
-    <div class="control control-1 active-btn" data-id="header">
-      <i class="fa-duotone fa-house"></i>
-    </div>
-    <div class="control control-2 " data-id="about">
-      <i class="fa-regular fa-user"></i>
-    </div>
-    <div class="control control-3 " data-id="portfolio">
-      <i class="fa-regular fa-briefcase"></i>
-    </div>
-    <div class="control control-4 " data-id="bolgs">
-      <i class="fa-regular fa-newspaper"></i>
-    </div>
-    <div class="control control-5 " data-id="contact">
-      <i class="fa-regular fa-address-card"></i>
-    </div>
-  </div>
+    <!-- About Section -->
+    <section id="about">
+        <h2>The Story</h2>
+        <div class="about-content">
+            <p>
+                Greetings. Name's Shubham Snehil. In this game, I don't play with cards—I play with data.
+            </p>
+            <p style="margin-top: 20px;">
+                Started my journey at Sri Venkateswara College, University of Delhi, where I mastered the art of Statistics 
+                while building my arsenal in Machine Learning and Data Analysis. But I ain't just about the numbers—I'm about 
+                the story they tell, the patterns they reveal, the future they predict.
+            </p>
+            <p style="margin-top: 20px;">
+                Research is my game, and I play it like a boss. Currently running operations at NIT Tiruchirappalli, 
+                pursuing my Master's in Computer Science. I'm looking for the next big move—a dynamic research internship 
+                where I can put my skills to work and leave my mark.
+            </p>
+            <p style="margin-top: 20px;">
+                In this business, you either push boundaries or you get left behind. I choose to redefine the game.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>The Arsenal</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Machine Learning</h3>
+            </div>
+            <div class="skill-card">
+                <h3>Deep Learning</h3>
+            </div>
+            <div class="skill-card">
+                <h3>IBM SPSS</h3>
+            </div>
+            <div class="skill-card">
+                <h3>Statistics</h3>
+            </div>
+            <div class="skill-card">
+                <h3>Data Analysis</h3>
+            </div>
+            <div class="skill-card">
+                <h3>Data Visualization</h3>
+            </div>
+            <!-- <div class="skill-card">
+                <h3>KNN & Naive Bayes</h3>
+            </div> -->
+            <div class="skill-card">
+                <h3>Oracle Cloud</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>The Operations</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Project Alpha</h3>
+                <p>
+                    A high-stakes operation involving advanced machine learning algorithms to predict market trends 
+                    and analyze complex datasets. This wasn't just data science—this was art. Implemented supervised 
+                    and unsupervised learning techniques that turned chaos into clarity.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">TensorFlow</span>
+                    <span class="tech-tag">Scikit-learn</span>
+                    <span class="tech-tag">Pandas</span>
+                </div>
+                <a href="#" class="project-link">View Details</a>
+            </div>
+            
+            <div class="project-card">
+                <h3>Project Omega</h3>
+                <p>
+                    Deep dive into the world of neural networks and deep learning. Built a sophisticated system 
+                    that processes massive datasets and delivers insights that others can only dream of. 
+                    This operation changed the game—predictive models that actually predict.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">PyTorch</span>
+                    <span class="tech-tag">Keras</span>
+                    <span class="tech-tag">CNN</span>
+                    <span class="tech-tag">NLP</span>
+                </div>
+                <a href="#" class="project-link">View Details</a>
+            </div>
+            
+            <div class="project-card">
+                <h3>Other Projects</h3>
+                <p>
+                    Every boss has their side operations. Data visualization dashboards that make executives weep, 
+                    statistical models that predict the unpredictable, and automation scripts that save thousands of hours. 
+                    From biostatistics to cloud computing, from ethical hacking to population science—if it involves data, 
+                    I've probably got my hands in it.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">R</span>
+                    <span class="tech-tag">SPSS</span>
+                    <span class="tech-tag">Tableau</span>
+                    <span class="tech-tag">SQL</span>
+                    <span class="tech-tag">Oracle Cloud</span>
+                </div>
+                <a href="#" class="project-link">Explore More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>The Track Record</h2>
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <h3>Research Assistant</h3>
+                <h4>Sri Venkateswara College, Delhi University</h4>
+                <div class="date">June 2022 - August 2022</div>
+                <!-- <p>
+                    This is where I leveled up. Dove deep into Machine Learning and Deep Learning—not just scratching 
+                    the surface, but mastering the fundamentals. Supervised and Unsupervised Learning, KNN, Naive Bayes—
+                    all tools in my arsenal now. This internship wasn't just about learning; it was about becoming 
+                    a force to be reckoned with in the data game.
+                </p> -->
+            </div>
+            
+            <div class="experience-item">
+                <h3>Research Intern</h3>
+                <h4>Sri Venkateswara College, Delhi University</h4>
+                <div class="date">July 2021 - August 2021</div>
+                <p>
+                    <!-- The COVID-19 Third Wave Project. Everyone was asking, "Is the third wave inevitable?" 
+                    We didn't just ask—we answered. Led data aggregation from multiple sources, transformed raw numbers 
+                    into powerful visualizations that told the whole story. This wasn't just research; this was 
+                    predicting the future. We decoded trends, analyzed patterns, and gave the world a glimpse of what 
+                    was coming. Data curation, visualization, analysis—I handled it all like a pro. -->
+                </p>
+            </div>
+            
+            <div class="experience-item">
+                <h3>Academic Tutor</h3>
+                <h4>Tutorpoint</h4>
+                <div class="date">December 2021 - December 2022</div>
+                <p>
+                    <!-- Knowledge is power, and I shared mine. Mentored students, broke down complex statistical concepts, 
+                    and helped them see the beauty in the numbers. A year of shaping minds and building the next 
+                    generation of data warriors. -->
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>The Training</h2>
+        <div class="education-grid">
+            <div class="education-card">
+                <h3>Master of Science - Computer Science</h3>
+                <h4>National Institute of Technology, Tiruchirappalli</h4>
+                <div class="date">August 2024 - May 2026</div>
+            </div>
+            
+            <div class="education-card">
+                <h3>Master - Biostatistics and Demography</h3>
+                <h4>International Institute for Population Sciences</h4>
+                <div class="date">July 2023 - September 2023</div>
+            </div>
+            
+            <div class="education-card">
+                <h3>Bachelor of Science (Honors) - Statistics</h3>
+                <h4>Sri Venkateswara College, Delhi University</h4>
+                <div class="date">2020 - 2023</div>
+            </div>
+            
+            <div class="education-card">
+                <h3>12th - Science</h3>
+                <h4>Kendriya Vidyalaya</h4>
+                <div class="date">April 2008 - March 2020</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications">
+        <h2>The Credentials</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Oracle Cloud Infrastructure<br>Data Science Professional</h3>
+            </div>
+            <div class="skill-card">
+                <h3>Ethical Hacking and<br>Penetration Testing</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 SHUBHAM SNEHIL - THE DATA DAEMON</p>
+        <p style="margin-top: 15px; color: #d4af37;">MAKING DATA WORK. MAKING NUMBERS TALK.</p>
+    </footer>
 </body>
-</html>
 </html>
