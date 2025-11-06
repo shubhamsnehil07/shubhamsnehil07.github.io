@@ -3,6 +3,7 @@
 
 import sys
 import os
+import tempfile
 import numpy as np
 from PIL import Image
 
@@ -10,6 +11,10 @@ from PIL import Image
 sys.path.insert(0, os.path.dirname(__file__))
 
 print("Testing image_colorization_fixed.py features...\n")
+
+# Create a temporary directory for test outputs
+temp_dir = tempfile.mkdtemp(prefix='colorization_test_')
+print(f"Using temporary directory: {temp_dir}\n")
 
 # Test 1: Check version compatibility function
 print("Test 1: Version Compatibility Check")
@@ -26,21 +31,22 @@ print("✓ Test 1 passed\n")
 print("Test 2: Visualizer (PIL fallback)")
 print("-" * 50)
 from image_colorization_fixed import Visualizer
-os.makedirs('/tmp/test_output', exist_ok=True)
 
 # Create a test image
 test_img = np.random.randint(0, 255, (100, 100, 3), dtype=np.uint8)
-success = Visualizer.save_image_pil(test_img, '/tmp/test_output/test_pil.png', 'Test')
+test_pil_path = os.path.join(temp_dir, 'test_pil.png')
+success = Visualizer.save_image_pil(test_img, test_pil_path, 'Test')
 assert success, "PIL save should succeed"
-assert os.path.exists('/tmp/test_output/test_pil.png'), "Output file should exist"
+assert os.path.exists(test_pil_path), "Output file should exist"
 print("✓ Test 2 passed\n")
 
 # Test 3: Test Visualizer with matplotlib
 print("Test 3: Visualizer (Matplotlib)")
 print("-" * 50)
-success = Visualizer.save_image_matplotlib(test_img, '/tmp/test_output/test_mpl.png', 'Test Matplotlib')
+test_mpl_path = os.path.join(temp_dir, 'test_mpl.png')
+success = Visualizer.save_image_matplotlib(test_img, test_mpl_path, 'Test Matplotlib')
 assert success, "Matplotlib save should succeed"
-assert os.path.exists('/tmp/test_output/test_mpl.png'), "Output file should exist"
+assert os.path.exists(test_mpl_path), "Output file should exist"
 print("✓ Test 3 passed\n")
 
 # Test 4: Test comparison visualization
@@ -48,7 +54,8 @@ print("Test 4: Comparison Visualization")
 print("-" * 50)
 gray_img = np.random.randint(0, 255, (100, 100), dtype=np.uint8)
 colored_img = np.random.randint(0, 255, (100, 100, 3), dtype=np.uint8)
-success = Visualizer.save_comparison(gray_img, colored_img, None, '/tmp/test_output/test_comparison.png')
+test_comparison_path = os.path.join(temp_dir, 'test_comparison.png')
+success = Visualizer.save_comparison(gray_img, colored_img, None, test_comparison_path)
 assert success, "Comparison save should succeed"
 print("✓ Test 4 passed\n")
 
@@ -90,3 +97,11 @@ print("  ✓ PIL fallback for visualization")
 print("  ✓ Matplotlib support when available")
 print("  ✓ Color space conversion utilities")
 print("  ✓ Configuration management")
+
+# Cleanup
+import shutil
+try:
+    shutil.rmtree(temp_dir)
+    print(f"\n✓ Cleaned up temporary directory: {temp_dir}")
+except Exception as e:
+    print(f"\n⚠ Warning: Could not clean up {temp_dir}: {e}")

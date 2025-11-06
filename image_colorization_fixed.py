@@ -144,11 +144,24 @@ class Config:
     output_dir = "./outputs"
     
     # Device
-    device = "cuda" if TORCH_OK and torch.cuda.is_available() else "cpu"
+    @classmethod
+    def get_device(cls):
+        """Get the appropriate device for training"""
+        try:
+            if TORCH_OK and torch.cuda.is_available():
+                return "cuda"
+        except Exception:
+            pass
+        return "cpu"
+    
+    device = "cpu"  # Default, will be updated at runtime
     
     @classmethod
     def print_config(cls):
         """Print current configuration"""
+        # Update device at runtime
+        cls.device = cls.get_device()
+        
         print("\n" + "="*70)
         print("CONFIGURATION")
         print("="*70)
@@ -502,6 +515,8 @@ if TORCH_OK:
 # ============================================================================
 
 if TORCH_OK:
+    import glob  # Import here for use in ColorizationDataset
+    
     class ColorizationDataset(Dataset):
         """Dataset for image colorization"""
         
@@ -518,7 +533,6 @@ if TORCH_OK:
             self.image_files = []
             if os.path.exists(image_dir):
                 for ext in ['*.jpg', '*.jpeg', '*.png', '*.bmp']:
-                    import glob
                     self.image_files.extend(glob.glob(os.path.join(image_dir, ext)))
                     self.image_files.extend(glob.glob(os.path.join(image_dir, ext.upper())))
             
@@ -743,7 +757,8 @@ def main():
             dataset,
             batch_size=Config.batch_size,
             shuffle=True,
-            num_workers=0  # Use 0 to avoid multiprocessing issues
+            num_workers=2,  # Use small number for better performance with error handling
+            persistent_workers=False
         )
         
         # Create model
