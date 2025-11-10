@@ -3,8 +3,8 @@
 // ============================================
 
 // ChatGPT API Configuration (Commented out for user to fill in)
-/*
-const OPENAI_API_KEY = 'YOUR_API_KEY_HERE'; // Add your OpenAI API key here
+
+const OPENAI_API_KEY = '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'; // Add your OpenAI API key here
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
 
 // Function to fetch dialogue from ChatGPT API
@@ -34,7 +34,7 @@ async function fetchDialogueFromAPI(level) {
         return null;
     }
 }
-*/
+
 
 // ============================================
 // HARDCODED QUESTIONS (Fallback - 50 Unique Questions)
