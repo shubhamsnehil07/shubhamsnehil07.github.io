@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bollywood Dialogue Quiz - Test Your Movie Knowledge!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <span class="sun-icon">☀️</span>
+        <span class="moon-icon">🌙</span>
+    </button>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">🎬 Bollywood Dialogue Quiz 🎬</h1>
+            <p class="subtitle">Guess the movie from the famous dialogue!</p>
+        </header>
+
+        <!-- Start Screen -->
+        <div id="startScreen" class="screen active">
+            <div class="start-content">
+                <div class="film-reel">🎞️</div>
+                <h2>Welcome to the Ultimate Bollywood Quiz!</h2>
+                <p class="instructions">
+                    • 5 Levels with 10 questions each<br>
+                    • 3 Lives per game<br>
+                    • Complete all levels to win!<br>
+                    • Wrong answer? Start from Level 1!
+                </p>
+                <button id="startBtn" class="btn btn-primary">Start Quiz</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen">
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-label">Level:</span>
+                    <span id="currentLevel" class="stat-value">1</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Question:</span>
+                    <span id="currentQuestion" class="stat-value">1</span>/10
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Lives:</span>
+                    <span id="livesDisplay" class="stat-value">❤️❤️❤️</span>
+                </div>
+            </div>
+
+            <!-- Level Indicators -->
+            <div class="level-indicators">
+                <div class="level-indicator active" data-level="1">1</div>
+                <div class="level-indicator" data-level="2">2</div>
+                <div class="level-indicator" data-level="3">3</div>
+                <div class="level-indicator" data-level="4">4</div>
+                <div class="level-indicator" data-level="5">5</div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="question-card">
+                <div class="dialogue-icon">💬</div>
+                <p id="dialogueText" class="dialogue-text">Loading dialogue...</p>
+                <div class="movie-hint">
+                    <span id="hintText"></span>
+                </div>
+            </div>
+
+            <!-- Answer Options -->
+            <div id="optionsContainer" class="options-container">
+                <!-- Options will be dynamically inserted here -->
+            </div>
+
+            <!-- Feedback Message -->
+            <div id="feedbackMsg" class="feedback-message"></div>
+        </div>
+
+        <!-- Victory Screen -->
+        <div id="victoryScreen" class="screen">
+            <div class="victory-content">
+                <h2>🎉 Congratulations! 🎉</h2>
+                <p class="victory-message">You've completed all 5 levels!</p>
+                <p class="victory-message">You're a true Bollywood expert! 🏆</p>
+                <div id="finalScore" class="final-score"></div>
+                <button id="playAgainBtn" class="btn btn-primary">Play Again</button>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameOverScreen" class="screen">
+            <div class="gameover-content">
+                <h2>😢 Game Over 😢</h2>
+                <p class="gameover-message">Better luck next time!</p>
+                <div id="gameOverStats" class="gameover-stats"></div>
+                <button id="retryBtn" class="btn btn-primary">Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fireworks Canvas -->
+    <canvas id="fireworksCanvas"></canvas>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
