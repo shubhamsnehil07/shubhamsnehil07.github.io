@@ -29,6 +29,7 @@
                 <p class="instructions">
                     • 5 Levels with 10 questions each<br>
                     • 3 Lives per game<br>
+                    • Use hints (costs 1 life)<br>
                     • Complete all levels to win!<br>
                     • Wrong answer? Start from Level 1!
                 </p>
@@ -77,6 +78,11 @@
                 </div>
             </div>
 
+            <!-- Hint Button -->
+            <div class="hint-container">
+                <button id="hintBtn" class="btn btn-hint">💡 Use Hint (-1 Life)</button>
+            </div>
+
             <!-- Answer Options -->
             <div id="optionsContainer" class="options-container">
                 <!-- Options will be dynamically inserted here -->
@@ -84,6 +90,19 @@
 
             <!-- Feedback Message -->
             <div id="feedbackMsg" class="feedback-message"></div>
+        </div>
+
+        <!-- Level Complete Screen -->
+        <div id="levelCompleteScreen" class="screen">
+            <div class="levelcomplete-content">
+                <h2>🎊 Level Complete! 🎊</h2>
+                <p class="levelcomplete-message">Congratulations! You've cleared Level <span id="levelCompleteLevel">1</span>!</p>
+                <p class="levelcomplete-message">What would you like to do?</p>
+                <div class="button-group">
+                    <button id="nextLevelBtn" class="btn btn-primary">Next Level ➡️</button>
+                    <button id="replayLevelBtn" class="btn btn-secondary">🔄 Replay Level</button>
+                </div>
+            </div>
         </div>
 
         <!-- Victory Screen -->
@@ -110,6 +129,9 @@
 
     <!-- Fireworks Canvas -->
     <canvas id="fireworksCanvas"></canvas>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas"></canvas>
 
     <!-- Scripts -->
     <script src="script.js"></script>
